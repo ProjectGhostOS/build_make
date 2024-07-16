@@ -214,6 +214,32 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   # Dump fingerprints
   script.Print("Target: {}".format(target_info.fingerprint))
 
+  android_version = target_info.GetBuildProp("ro.build.version.release")
+  tenx_version = target_info.GetBuildProp("org.tenx_version")
+  build_type = target_info.GetBuildProp("org.tenx.build_type")
+  build_id = target_info.GetBuildProp("ro.build.id")
+  build_date = target_info.GetBuildProp("org.tenx.build_date")
+  security_patch = target_info.GetBuildProp("ro.build.version.security_patch")
+  device = target_info.GetBuildProp("ro.product.device")
+
+  script.Print("####################################################");
+  script.Print("                   ___  ____   _  __                ");
+  script.Print("                  <  / / __ \ \ |/ /                ");
+  script.Print("                  / / / / / / /   /                 ");
+  script.Print("                 / / / /_/ / /   |                  ");
+  script.Print("                /_/  \____/ /_/|_|                  ");
+  script.Print("                                                    ");
+  script.Print("                 The custom ROM                     ");
+  script.Print("####################################################");
+  script.Print(" - Android version: %s"%(android_version));
+  script.Print(" - TenX version:    %s"%(tenx_version));
+  script.Print(" - TenX build type: %s"%(build_type));
+  script.Print(" - Build id:        %s"%(build_id));
+  script.Print(" - Build date:      %s"%(build_date));
+  script.Print(" - Security patch:  %s"%(security_patch));
+  script.Print(" - Device:          %s"%(device));
+  script.Print("####################################################");
+
   device_specific.FullOTA_InstallBegin()
 
   CopyInstallTools(output_zip)
